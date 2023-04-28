@@ -1,10 +1,14 @@
 import express from 'express';
 import propiedadesRoutes from './routes/propiedades.routes.js';
 import {PORT} from './config.js';
+import cors from 'cors';
 
 const app = express();
 
+
 app.use(express.json());
+
+app.use(cors());
 
 //CONFIGURAR RUTA Y ARCHIVO DE RUTAS
 app.use('/api', propiedadesRoutes);
@@ -16,6 +20,7 @@ app.use ((req, res, next) => {
         message: 'Recurso no encontrado, revise su petición'
     })
 })
+
 
 app.listen(PORT);
 console.log('El servidor se está ejecutando en el puerto', PORT);
