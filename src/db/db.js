@@ -1,5 +1,5 @@
 import {createPool} from "mysql2/promise";
-import { config } from "dotenv";
+//import { config } from "dotenv";
 
 import { 
     DB_DATABASE,
