@@ -44,10 +44,10 @@ export const getPropiedades = async (req, res) => {
 
 export const addPropiedad = async (req, res) => {
     try {
-      const { titulo, ano, descripcion } = req.body;
+      const { titulo, precio, ano, direccion, descripcion } = req.body;
       const [rows] = await pool.query(
         "INSERT INTO propiedades (titulo, ano, descripcion) VALUES (?, ?, ?)",
-        [titulo, ano, descripcion ]
+        [titulo, precio, ano, direccion, descripcion ]
       );
       res.status(201).json({ id: rows.insertId, titulo, ano, descripcion });
     } catch (error) {
@@ -58,11 +58,11 @@ export const addPropiedad = async (req, res) => {
   export const updatePropiedad = async (req, res) => {
     try {
       const { id } = req.params;
-      const { titulo, ano, descripcion } = req.body;
+      const { titulo, precio, ano, direccion, descripcion } = req.body;
   
       const [result] = await pool.query(
-        "UPDATE propiedades SET titulo = IFNULL(?, titulo), ano = IFNULL(?, ano), descripcion = IFNULL(?, descripcion) WHERE id = ?",
-        [titulo, ano, descripcion, id]
+        "UPDATE propiedades SET titulo = IFNULL(?, titulo), precio = IFNULL(?, precio), ano = IFNULL(?, ano), direccion = IFNULL(?, direccion), descripcion = IFNULL(?, descripcion) WHERE id = ?",
+        [titulo, precio, ano, direccion, descripcion, id]
       );
   
       if (result.affectedRows === 0)
