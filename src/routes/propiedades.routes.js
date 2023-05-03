@@ -24,6 +24,7 @@ router.delete("/propiedades/:id", deletePropiedad);
 router.post("/propiedades", addPropiedad);
 
 // ACTUALIZAR UNA PROPIEDAD
-router.patch("/propiedades/:id", updatePropiedad);
+//router.patch("/propiedades/:id", updatePropiedad);
+router.put("/propiedades/:id", updatePropiedad);
 
 export default router;

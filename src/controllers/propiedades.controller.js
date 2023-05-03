@@ -44,12 +44,12 @@ export const getPropiedades = async (req, res) => {
 
 export const addPropiedad = async (req, res) => {
     try {
-      const { titulo, precio, ano, direccion, descripcion } = req.body;
+      const { titulo, precio, ano, categoria, direccion, descripcion } = req.body;
       const [rows] = await pool.query(
-        "INSERT INTO propiedades (titulo, ano, descripcion) VALUES (?, ?, ?)",
-        [titulo, precio, ano, direccion, descripcion ]
+        "INSERT INTO propiedades (titulo, precio, ano, categoria, direccion, descripcion) VALUES (?, ?, ?, ?, ?, ?)",
+        [titulo, precio, ano, categoria, direccion, descripcion ]
       );
-      res.status(201).json({ id: rows.insertId, titulo, ano, descripcion });
+      res.status(201).json({ id: rows.insertId, titulo, precio, ano, categoria, direccion, descripcion });
     } catch (error) {
       return res.status(500).json({ message: "Algo no fue bien" });
     }
@@ -58,11 +58,11 @@ export const addPropiedad = async (req, res) => {
   export const updatePropiedad = async (req, res) => {
     try {
       const { id } = req.params;
-      const { titulo, precio, ano, direccion, descripcion } = req.body;
+      const { titulo, precio, ano, categoria, direccion, descripcion } = req.body;
   
       const [result] = await pool.query(
-        "UPDATE propiedades SET titulo = IFNULL(?, titulo), precio = IFNULL(?, precio), ano = IFNULL(?, ano), direccion = IFNULL(?, direccion), descripcion = IFNULL(?, descripcion) WHERE id = ?",
-        [titulo, precio, ano, direccion, descripcion, id]
+        "UPDATE propiedades SET titulo = IFNULL(?, titulo), precio = IFNULL(?, precio), ano = IFNULL(?, ano), categoria = IFNULL(?, categoria),direccion = IFNULL(?, direccion), descripcion = IFNULL(?, descripcion) WHERE id = ?",
+        [titulo, precio, ano, categoria, direccion, descripcion, id]
       );
   
       if (result.affectedRows === 0)
@@ -80,5 +80,11 @@ export const addPropiedad = async (req, res) => {
   
  
   
- 
+  export const methods = {
+    getPropiedad,
+    getPropiedades,
+    addPropiedad,
+    updatePropiedad,
+    deletePropiedad
+};
   
