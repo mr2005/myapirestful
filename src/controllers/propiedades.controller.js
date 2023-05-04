@@ -68,9 +68,7 @@ export const addPropiedad = async (req, res) => {
       if (result.affectedRows === 0)
         return res.status(404).json({ message: "Propiedad no encontrada" });
   
-      const [rows] = await pool.query("SELECT * FROM propiedades WHERE id = ?", [
-        id,
-      ]);
+      const [rows] = await pool.query("SELECT * FROM propiedades WHERE id = ?", [id]);
   
       res.json(rows[0]);
     } catch (error) {
