@@ -1,14 +1,17 @@
 import express from 'express';
 import propiedadesRoutes from './routes/propiedades.routes.js';
 import {PORT} from './config.js';
-//import cors from 'cors';
+import cors from 'cors';
 
 const app = express();
 
 
 app.use(express.json());
 
-// app.use(cors());
+app.use(cors({
+    origin: '*'
+}
+));
 
 //CONFIGURAR RUTA Y ARCHIVO DE RUTAS
 app.use('/api', propiedadesRoutes);
