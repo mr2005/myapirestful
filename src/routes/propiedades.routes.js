@@ -14,7 +14,7 @@ const router = Router();
 // LISTAR TODAS LAS PROPIEDADES
 router.get("/propiedades", getPropiedades);
 
-// MOSTRAR UNA PROPIEDAD
+// MOSTRAR UNA PROPIEDAD.
 router.get("/propiedades/:id", getPropiedad);
 
 // BORRAR UNA PROPIEDAD
@@ -24,7 +24,6 @@ router.delete("/propiedades/:id", deletePropiedad);
 router.post("/propiedades", addPropiedad);
 
 // ACTUALIZAR UNA PROPIEDAD
-//router.patch("/propiedades/:id", updatePropiedad);
 router.put("/propiedades/:id", updatePropiedad);
 
 export default router;
